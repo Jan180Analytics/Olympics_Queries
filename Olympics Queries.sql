@@ -11,7 +11,6 @@ From noc_regions;
 
 
 
-
 Select count(distinct (Games)) [Count of all Olympic games]
 From athlete_events;
 
@@ -19,7 +18,6 @@ From athlete_events;
 
 
 -- List down all Olympics games held so far.
-
 
 
 
@@ -34,7 +32,6 @@ Order by Year;
 
 
 
-
 Select Games, count(distinct(region)) as [Total Countries]
 From athlete_events
 
@@ -46,7 +43,6 @@ Order by Games;
 
 
 -- Identify the sport which was played in all summer olympics.
-
 
 
 
@@ -74,7 +70,6 @@ join t1 on t1.[Total Summer Olympic Games] = t3.[Number of Games]
 
 
 
-
 Select Top 2 Name, Sex, Age, Team, Games, City, Sport, Event, Medal
 From athlete_events
 Where Medal = 'Gold'
@@ -84,7 +79,6 @@ Order by Age desc;
 
 
 -- In which Sport/event, India has won highest medals.
-
 
 
 
@@ -102,7 +96,6 @@ Order by [Total Medal] desc;
 
 
 -- Break down all olympic games where india won medal for Hockey and how many medals in each olympic games.
-
 
 
 
