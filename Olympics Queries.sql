@@ -112,6 +112,21 @@ Order by [Total Medal] desc;
 
 
 
+-- Fetch the top 5 athletes who have won the most gold medals.
+
+
+
+With CTE_1 as (Select Name, COUNT(1) as [Total Medals]
+From athlete_events
+Where Medal = 'Gold'
+Group by Name),
+
+CTE_2 as (Select *, DENSE_RANK() over(order by [Total Medals] desc) as Rnk
+		  From CTE_1)
+
+Select *
+From CTE_2
+Where Rnk <= 5;
 
 
 
