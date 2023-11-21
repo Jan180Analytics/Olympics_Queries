@@ -132,4 +132,46 @@ Where Rnk <= 5;
 
 
 
+-- Fetch the top 5 athletes who have won the most medals (gold/silver/bronze).
+
+
+
+With CTE_1 as (Select Name, COUNT(1) as [Total Medals], Team
+From athlete_events
+Where Medal <> 'Na'
+Group by Name, Team),
+
+CTE_2 as (Select *, DENSE_RANK () over(order by [Total Medals] desc) as Rnk
+		  From CTE_1)
+
+Select *
+From CTE_2
+Where Rnk <= 5;
+
+
+
+
+
+-- Fetch the top 5 most successful countries in olympics. Success is defined by no of medals won.
+
+
+
+With CTE_1 as (Select region as Countries, count(1) as [Total Medals]
+From athlete_events
+
+join noc_regions on athlete_events.NOC = noc_regions.NOC
+Where Medal <> 'NA'
+Group by region),
+
+CTE_2 as (Select *, DENSE_RANK () over(order by [Total Medals] desc) as Rnk
+		  From CTE_1)
+
+Select *
+From CTE_2
+Where Rnk <= 5;
+
+
+
+
+
 
